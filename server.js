@@ -13,6 +13,12 @@ const app = express();
 // accepting json data
 app.use(express.json());
 
+// cross origin headers
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://chatify-b5yp.onrender.com/");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 
 app.use('/api/user', userRoutes);
