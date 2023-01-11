@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const connectDB = require("./config/db");
 const express = require('express');
+var cors = require('cors');
 const userRoutes = require('./routes/userRoutes')
 const chatRoutes = require('./routes/chatRoutes')
 const messageRoutes = require("./routes/messageRoutes");
@@ -12,7 +13,7 @@ connectDB();
 const app = express();
 // accepting json data
 app.use(express.json());
-
+app.use(cors());
 // cross origin headers
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "https://chatify-b5yp.onrender.com/");
