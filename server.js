@@ -29,6 +29,17 @@ app.use(notFound);
 app.use(errorHandler);
 // PORT is what is in the ENV file
 const PORT = process.env.PORT;
+// deployment
+if (process.env.NODE_ENV === 'production') {
+  //*Set static folder up in production
+  app.use(express.static('frontend/build'));
+
+  app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'frontend', 'build','index.html')));
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
 
 // SOCKET IO: https://socket.io/get-started/chat
 /*Sockets have traditionally been the solution around which 
