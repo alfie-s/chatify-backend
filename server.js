@@ -44,7 +44,7 @@ const io = require("socket.io")(server, {
   pingTimeout: 60000,
   // cors to stop any cross orgin issues
   cors: {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://chatify-b5yp.onrender.com"],
     credentials: true,
   },
 });
