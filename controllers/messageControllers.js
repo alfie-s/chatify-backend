@@ -36,9 +36,6 @@ const sendMessage = async (req, res) => {
     let message = await Message.create(newMessage);
     message = await message.populate("sender", "name pic");
     message = await message.populate("chat");
-    // Error: message.populate(...).execPopulate is not a function
-    // message = await message.populate("sender", "name pic").execPopulate();
-    // message = await message.populate("chat").execPopulate();
     message = await User.populate(message, {
       path: "chat.users",
       select: "name pic email",
